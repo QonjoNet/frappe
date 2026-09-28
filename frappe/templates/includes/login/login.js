@@ -1,5 +1,6 @@
 // login.js
 // don't remove this line (used in test)
+if (window.$ && !window.$.fn.dropdown) { window.$.fn.dropdown = function() { return this; }; }
 
 window.disable_signup = {{ disable_signup and "true" or "false" }};
 window.show_footer_on_login = {{ show_footer_on_login and "true" or "false" }};

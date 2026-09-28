@@ -31,14 +31,20 @@ class RouteHistory(Document):
 
 
 @frappe.whitelist()
-def deferred_insert(routes: str | list[dict[str, Any]]):
+def deferred_insert(routes: str | list[dict[str, Any]] | None = None):
+	if not routes:
+		return
+	parsed = frappe.parse_json(routes)
+	if not parsed:
+		return
 	routes = [
 		{
 			"user": frappe.session.user,
 			"route": route.get("route"),
 			"creation": route.get("creation"),
 		}
-		for route in frappe.parse_json(routes)
+		for route in parsed
+		if isinstance(route, dict)
 	]
 
 	_deferred_insert("Route History", routes)

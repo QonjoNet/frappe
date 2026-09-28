@@ -77,5 +77,16 @@
 			<source src="{{ sound.src }}"></source>
 		</audio>
 		{% endfor %}
+		<script type="text/javascript">
+			document.addEventListener("DOMContentLoaded", function() {
+				setTimeout(function() {
+					var splash = document.querySelector(".splash");
+					if (splash) {
+						splash.style.display = "none";
+						splash.remove();
+					}
+				}, 500);
+			});
+		</script>
 	</body>
 </html>

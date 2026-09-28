@@ -406,7 +406,15 @@ def get_desktop_page(page: str):
 	        dict: dictionary of cards, charts and shortcuts to be displayed on website
 	"""
 	try:
-		workspace = Workspace(loads(page))
+		if isinstance(page, str):
+			try:
+				page = loads(page)
+			except Exception:
+				page = {"name": page}
+		elif not isinstance(page, dict):
+			page = {}
+
+		workspace = Workspace(page)
 		workspace.build_workspace()
 		return {
 			"charts": workspace.charts,
