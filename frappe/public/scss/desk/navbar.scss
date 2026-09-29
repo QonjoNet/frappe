@@ -1,3 +1,9 @@
+.sticky-top {
+	z-index: 10500 !important;
+	overflow: visible !important;
+	contain: none !important;
+}
+
 .navbar {
 	height: $navbar-height;
 	background: var(--navbar-bg);
